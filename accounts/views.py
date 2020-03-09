@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse
 
-from .forms import registerForm, registerDonorForm
+from .forms import registerForm
+from core.forms import registerDonorForm
 
 # Create your views here.
 
