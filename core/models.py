@@ -25,7 +25,6 @@ class state(models.Model):
 
 class group(models.Model):
 	name = models.CharField(max_length=3)
-	gives = models.CharField(max_length=30)
 	receives = models.CharField(max_length = 30)
 
 	def __str__(self):
@@ -40,6 +39,7 @@ class Donor(models.Model):
 	country = models.OneToOneField(country, on_delete=models.SET_NULL, null=True)
 	state = models.OneToOneField(state, on_delete = models.SET_NULL, null=True)
 	zipcode = models.OneToOneField(zipCode, on_delete = models.SET_NULL, null=True)
+	urgent_available = models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.user.username + ' >> ' + self.user.email
