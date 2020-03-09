@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1>Register as a Donor</h1>
-	<form method="POST" action="{% url 'profile' %}">
+	<form method="POST" action="{% url 'register-donor' %}">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<input type="submit" name="Register as Donor">

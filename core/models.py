@@ -33,13 +33,13 @@ class group(models.Model):
 
 class Donor(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
-	blood_group = models.OneToOneField(group, on_delete = models.PROTECT)
+	blood_group = models.OneToOneField(group, on_delete = models.SET_NULL, null=True)
 	age = models.IntegerField()
 	phone_number = models.IntegerField()
 	occupation = models.CharField(max_length = 50)
-	country = models.OneToOneField(country, on_delete=models.PROTECT)
-	state = models.OneToOneField(state, on_delete = models.PROTECT)
-	zipcode = models.OneToOneField(zipCode, on_delete = models.PROTECT, null=True)
+	country = models.OneToOneField(country, on_delete=models.SET_NULL, null=True)
+	state = models.OneToOneField(state, on_delete = models.SET_NULL, null=True)
+	zipcode = models.OneToOneField(zipCode, on_delete = models.SET_NULL, null=True)
 
 	def __str__(self):
 		return self.user.username + ' >> ' + self.user.email

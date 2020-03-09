@@ -8,13 +8,12 @@ from core.forms import registerDonorForm
 # Create your views here.
 
 def registerDonorView(request):
-	user = request.user
-	form = registerDonorForm(initial = {'user':user})
+	form = registerDonorForm()
 	if request.method == "POST":
 		form = registerDonorForm(request.POST)
 		
 		if form.is_valid():
-			temp = form.save(commit=false)
+			temp = form.save(commit=False)
 			temp.user = request.user
 			temp.save()
 			return redirect('profile')
