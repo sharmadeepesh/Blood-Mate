@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login | Blood Buddy</title>
+</head>
+<body>
+	<h1>Login</h1>
+	<form method = "POST" action="{% url 'login' %}">
+		{% csrf_token %}
+		<p>Username</p>
+		<input type="text" placeholder="Enter your username" name="username">
+		<br/>
+		<p>Password</p>
+		<input type="password" name="password" placeholder="Enter your passsword">
+		<br/>
+		<input type="submit" name="Log In">
+	</form>
+</body>
+</html>

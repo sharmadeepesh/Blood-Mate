@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register as a Donor | Blood Mate</title>
+</head>
+<body>
+	<h1>Register as a Donor</h1>
+	<form method="POST" action="{% url 'profile' %}">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" name="Register as Donor">
+	</form>
+</body>
+</html>
