@@ -1,10 +1,26 @@
 from django.shortcuts import render, redirect
 from core.forms import registerDonorForm
 
+from django.contrib.auth.models import User
 from .models import Donor
 from .filters import donorFilter
 
 # Create your views here.
+
+def donorProfileView(request, username):
+	user = User.objects.filter(username=username)
+	if user.exists():
+		donor = Donor.objects.filter(user=user[0])
+		if donor.exists():
+			context = {
+				'donor':donor[0],
+			}
+			return render(request, "core/donorprofile.html", context = context)
+		else:
+			return redirect('register-donor')
+	else:
+		return redirect('register')
+
 def registerDonorView(request):
 	form = registerDonorForm()
 	if request.method == "POST":
@@ -14,7 +30,7 @@ def registerDonorView(request):
 			temp = form.save(commit=False)
 			temp.user = request.user
 			temp.save()
-			return redirect('dashboard')
+			return redirect('profile')
 		else:
 			return redirect('register-donor')
 

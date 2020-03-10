@@ -32,7 +32,7 @@ def loginView(request):
 
 		if user is not None:
 			login(request, user)
-			return redirect('dashboard')
+			return redirect('profile')
 		else:
 			return redirect('login')
 	else:
@@ -42,12 +42,12 @@ def logoutView(request):
 	logout(request)
 	return redirect('login')
 
-def dashboardView(request):
+def profileView(request):
 	user = request.user
 	context = {
 		'username':user.username,
 	}
-	return render(request,'accounts/dashboard.html',context = context)
+	return render(request,'accounts/profile.html',context = context)
 
 def profileSettingsView(request):
 	user = request.user
