@@ -6,3 +6,9 @@ class registerDonorForm(ModelForm):
 		model = Donor
 		fields = ['first_name','last_name','blood_group','age','phone_number','occupation','country','state','zipcode','urgent_available']
 		#fields = '__all__'
+
+class donorSettingsForm(ModelForm):
+	class Meta:
+		model = Donor
+		fields = '__all__'
+		exclude = ['user']

@@ -25,10 +25,11 @@ def registerDonorView(request):
 	form = registerDonorForm()
 	if request.method == "POST":
 		form = registerDonorForm(request.POST)
-		
+		print(request.user)
 		if form.is_valid():
 			temp = form.save(commit=False)
 			temp.user = request.user
+			print(temp.user)
 			temp.save()
 			return redirect('profile')
 		else:

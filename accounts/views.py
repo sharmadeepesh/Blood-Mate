@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse
 
+from core.forms import donorSettingsForm
 from .forms import registerForm
 
 # Create your views here.
@@ -49,9 +50,19 @@ def profileView(request):
 	}
 	return render(request,'accounts/profile.html',context = context)
 
-def profileSettingsView(request):
+def donorSettingsView(request):
 	user = request.user
-	context = {
-		'username':user.username,
-	}
-	return render(request,'accounts/settings.html', context = context)
+	form = donorSettingsForm(instance=user.donor)
+	if request.method == "POST":
+		form = donorSettingsForm(request.POST, request.FILES, instance=user.donor)
+		if form.is_valid():
+			form.save()
+			return redirect('settings')
+		else:
+			return redirect('settings')
+	else:
+		context = {
+	 		'username':user.username,
+			'form':form,
+			}
+		return render(request,'accounts/settings.html', context = context)
