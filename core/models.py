@@ -31,6 +31,8 @@ class group(models.Model):
 		return str(self.name)
 
 class Donor(models.Model):
+	first_name = models.CharField(max_length = 20, null=True)
+	last_name = models.CharField(max_length = 20, null=True)
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
 	blood_group = models.OneToOneField(group, on_delete = models.SET_NULL, null=True)
 	age = models.IntegerField()

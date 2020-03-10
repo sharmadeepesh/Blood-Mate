@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search Donors | Blood Mate</title>
+</head>
+<body>
+	
+	<form method="GET">
+		{% csrf_token %}
+		{{ filter.form }}
+		<button type="submit">Search</button>
+	</form>
+
+
+	<table>
+		<tr>
+			<th>First name</th>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Blood Group</th>
+			<th>Age</th>
+			<th>Phone Number</th>
+			<th>Occupation</th>
+			<th>Country</th>
+			<th>State</th>
+			<th>ZipCode</th>
+			<th>Urgent Available</th>
+		</tr>
+	{% for donor in donors %}
+		<tr>
+			<th>{{ donor.first_name }}</th>
+			<th>{{ donor.last_name }}</th>
+			<th>{{ donor.user.email }}</th>
+			<th>{{ donor.blood_group }}</th>
+			<th>{{ donor.age }}</th>
+			<th>{{ donor.phone_number }}</th>
+			<th>{{ donor.occupation }}</th>
+			<th>{{ donor.country }}</th>
+			<th>{{ donor.state }}</th>
+			<th>{{ donor.zipcode }}</th>
+			<th>{{ donor.urgent_available }}</th>
+		</tr>
+	{% endfor %}
+</body>
+</html>
